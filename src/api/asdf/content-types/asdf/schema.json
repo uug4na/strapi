@@ -1,0 +1,27 @@
+{
+  "kind": "collectionType",
+  "collectionName": "asdfs",
+  "info": {
+    "singularName": "asdf",
+    "pluralName": "asdfs",
+    "displayName": "asdf"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "cardSubtitle": {
+      "type": "string"
+    },
+    "zurag": {
+      "type": "string"
+    },
+    "cardDetailsText": {
+      "type": "richtext"
+    }
+  }
+}
