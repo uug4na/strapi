@@ -5,8 +5,8 @@ module.exports = [
   {
     name: 'strapi::cors',
     config: {
-      origin: ['https://techworm.vercel.app'],
-      methods: ['GET', 'POST'],
+      origin: ['*'],
+      methods: ['*'],
       headers: ['*'],
       keepHeaderOnError: true,
     },
