@@ -5,9 +5,11 @@ module.exports = [
   {
     name: 'strapi::cors',
     config: {
-      enabled: true,
-      headers: '*',
-    }
+      origin: ['https://techworm.vercel.app'],
+      methods: ['GET', 'POST'],
+      headers: ['*'],
+      keepHeaderOnError: true,
+    },
   },
   'strapi::logger',
   'strapi::query',
