@@ -12,9 +12,6 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "news": {
-      "type": "richtext"
-    },
     "title": {
       "type": "string"
     },
@@ -42,6 +39,13 @@
         "videos",
         "audios"
       ]
+    },
+    "ckeditor": {
+      "type": "customField",
+      "options": {
+        "preset": "toolbar"
+      },
+      "customField": "plugin::ckeditor5.CKEditor"
     }
   }
 }
