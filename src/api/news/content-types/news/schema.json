@@ -29,17 +29,6 @@
         "audios"
       ]
     },
-    "images": {
-      "type": "media",
-      "multiple": true,
-      "required": false,
-      "allowedTypes": [
-        "images",
-        "files",
-        "videos",
-        "audios"
-      ]
-    },
     "ckeditor": {
       "type": "customField",
       "options": {
