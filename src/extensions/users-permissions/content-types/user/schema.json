@@ -68,7 +68,7 @@
     "Description": {
       "type": "string"
     },
-    "thumbnail": {
+    "profilePicture": {
       "allowedTypes": [
         "images",
         "files",
