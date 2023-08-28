@@ -4,16 +4,19 @@
   "info": {
     "singularName": "link",
     "pluralName": "links",
-    "displayName": "Link"
+    "displayName": "Link",
+    "description": ""
   },
   "options": {
-    "draftAndPublish": true,
-    "populateCreatorFields": true
+    "draftAndPublish": true
   },
   "pluginOptions": {},
   "attributes": {
     "linkOfPost": {
       "type": "string"
+    },
+    "tailbar": {
+      "type": "text"
     }
   }
 }
