@@ -4,7 +4,7 @@
   "info": {
     "singularName": "news",
     "pluralName": "newses",
-    "displayName": "News",
+    "displayName": "simpleNewses",
     "description": ""
   },
   "options": {

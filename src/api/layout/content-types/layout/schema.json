@@ -1,0 +1,22 @@
+{
+  "kind": "collectionType",
+  "collectionName": "layouts",
+  "info": {
+    "singularName": "layout",
+    "pluralName": "layouts",
+    "displayName": "newsWithProduct",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "productsLayout": {
+      "type": "dynamiczone",
+      "components": [
+        "store.store-layout"
+      ]
+    }
+  }
+}
