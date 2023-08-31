@@ -1,0 +1,19 @@
+{
+  "collectionName": "components_tags_tags",
+  "info": {
+    "displayName": "Tags",
+    "icon": "hashtag"
+  },
+  "options": {},
+  "attributes": {
+    "Tags": {
+      "type": "enumeration",
+      "enum": [
+        "apple",
+        "microsoft",
+        "tesla",
+        "engineer"
+      ]
+    }
+  }
+}
