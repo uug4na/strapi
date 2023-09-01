@@ -17,6 +17,11 @@
     },
     "tailbar": {
       "type": "text"
+    },
+    "Tag": {
+      "type": "component",
+      "repeatable": false,
+      "component": "tags.tags"
     }
   }
 }
