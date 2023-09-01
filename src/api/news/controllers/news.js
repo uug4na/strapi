@@ -8,6 +8,7 @@ const { createCoreController } = require('@strapi/strapi').factories;
 module.exports = createCoreController('api::news.news', ({ strapi }) => ({
   async find(ctx) {
     // Calling the default core action
+    // @ts-ignore
     const { data, meta } = await super.find(ctx);
     const query = strapi.db.query('api::news.news');
     await Promise.all(
