@@ -16,25 +16,24 @@ async function fetchDataFromCollections(collections) {
     for (const collection of collections) {
         const query = strapi.db.query(collection);
         const foundItem = await query.findMany({
-            populate: ['createdBy'],
+            populate: ['createdBy', 'thumbnail'],
+
         });
+        console.log(`query: ${JSON.stringify(foundItem)}`)
 
         const createdByFields = extractCreatedByFields(foundItem);
         const collectionName = collection.split('::').pop().split('.').pop();
 
-        // Add a collectionType field with the collection name to each item
         createdByFields.forEach(item => {
             item.newsType = collectionName;
         });
         unifiedResult.push(...createdByFields);
     }
 
-    // Parse the "publishedAt" field into Date objects
     unifiedResult.forEach(item => {
         item.publishedAt = new Date(item.publishedAt);
     });
 
-    // Sort the unified array by publishedAt field in descending order
     unifiedResult.sort((a, b) => b.publishedAt - a.publishedAt);
 
     return unifiedResult;
