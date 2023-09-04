@@ -34,6 +34,11 @@
       },
       "customField": "plugin::ckeditor5.CKEditor",
       "required": true
+    },
+    "Tags": {
+      "type": "component",
+      "repeatable": false,
+      "component": "tags.tags"
     }
   }
 }
