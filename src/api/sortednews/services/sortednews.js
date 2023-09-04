@@ -16,11 +16,9 @@ async function fetchDataFromCollections(collections) {
     for (const collection of collections) {
         const query = strapi.db.query(collection);
         const foundItem = await query.findMany({
-            populate: ['createdBy', 'thumbnail'],
-
+            populate: ['createdBy', 'thumbnail', 'Tags'],
         });
-        console.log(`query: ${JSON.stringify(foundItem)}`)
-
+        // console.log(`query: ${JSON.stringify(foundItem)}`)
         const createdByFields = extractCreatedByFields(foundItem);
         const collectionName = collection.split('::').pop().split('.').pop();
 
