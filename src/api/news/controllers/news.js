@@ -19,7 +19,7 @@ module.exports = createCoreController('api::news.news', ({ strapi }) => ({
           },
           populate: ['createdBy', 'updatedBy'],
         });
-
+        
         data[index].attributes.createdBy = {
           id: foundItem.createdBy.id,
           firstname: foundItem.createdBy.firstname,
@@ -32,6 +32,7 @@ module.exports = createCoreController('api::news.news', ({ strapi }) => ({
         };
       })
     );
+  
     return { data, meta };
   },
 }));
