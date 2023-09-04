@@ -24,6 +24,9 @@
     },
     "newsType": {
       "type": "string"
+    },
+    "name": {
+      "type": "string"
     }
   }
 }
