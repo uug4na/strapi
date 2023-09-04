@@ -37,7 +37,7 @@
     },
     "Tags": {
       "type": "component",
-      "repeatable": false,
+      "repeatable": true,
       "component": "tags.tags"
     }
   }

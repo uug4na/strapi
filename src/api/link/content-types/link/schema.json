@@ -18,9 +18,9 @@
     "tailbar": {
       "type": "text"
     },
-    "Tag": {
+    "Tags": {
       "type": "component",
-      "repeatable": false,
+      "repeatable": true,
       "component": "tags.tags"
     }
   }
