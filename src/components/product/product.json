@@ -28,6 +28,9 @@
     },
     "descriptionOfProduct": {
       "type": "text"
+    },
+    "color": {
+      "type": "string"
     }
   }
 }
