@@ -22,10 +22,10 @@
       "repeatable": false,
       "component": "hot-or-not.hot-or-not"
     },
-    "ProductLayout": {
+    "ckeditor": {
       "type": "component",
       "repeatable": true,
-      "component": "store.store-layout"
+      "component": "ckeditor.ckeditor"
     }
   }
 }
