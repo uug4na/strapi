@@ -1,0 +1,16 @@
+{
+  "collectionName": "components_product_prices",
+  "info": {
+    "displayName": "prices",
+    "icon": "magic"
+  },
+  "options": {},
+  "attributes": {
+    "price": {
+      "type": "string"
+    },
+    "store": {
+      "type": "string"
+    }
+  }
+}

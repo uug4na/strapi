@@ -1,0 +1,33 @@
+{
+  "collectionName": "components_product_products",
+  "info": {
+    "displayName": "product",
+    "icon": "archive",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "productimage": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "productprice": {
+      "type": "component",
+      "repeatable": true,
+      "component": "product.prices"
+    },
+    "titleOfProduct": {
+      "type": "text"
+    },
+    "descriptionOfProduct": {
+      "type": "text"
+    }
+  }
+}

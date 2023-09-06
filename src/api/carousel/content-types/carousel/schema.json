@@ -17,11 +17,6 @@
     },
     "newsId": {
       "type": "string"
-    },
-    "newsType": {
-      "type": "component",
-      "repeatable": true,
-      "component": "news-type.news-type"
     }
   }
 }

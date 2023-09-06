@@ -22,10 +22,13 @@
       "repeatable": false,
       "component": "hot-or-not.hot-or-not"
     },
-    "ckeditor": {
-      "type": "component",
-      "repeatable": true,
-      "component": "ckeditor.ckeditor"
+    "news": {
+      "type": "dynamiczone",
+      "components": [
+        "ckeditor.ckeditor",
+        "product.prices",
+        "product.product"
+      ]
     }
   }
 }
