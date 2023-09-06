@@ -18,22 +18,10 @@
         "audios"
       ]
     },
-    "price2": {
-      "type": "string"
-    },
     "price1": {
       "type": "string"
     },
-    "price3": {
-      "type": "string"
-    },
     "storeName1": {
-      "type": "string"
-    },
-    "storeName2": {
-      "type": "string"
-    },
-    "storeName3": {
       "type": "string"
     }
   }

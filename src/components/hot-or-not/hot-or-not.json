@@ -1,0 +1,13 @@
+{
+  "collectionName": "components_hot_or_not_hot_or_nots",
+  "info": {
+    "displayName": "Hot Or Not",
+    "icon": "magic"
+  },
+  "options": {},
+  "attributes": {
+    "hot": {
+      "type": "boolean"
+    }
+  }
+}

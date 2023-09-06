@@ -12,16 +12,20 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "productsLayout": {
-      "type": "dynamiczone",
-      "components": [
-        "store.store-layout"
-      ]
-    },
     "Tags": {
       "type": "component",
       "repeatable": true,
       "component": "tags.tags"
+    },
+    "Hot": {
+      "type": "component",
+      "repeatable": false,
+      "component": "hot-or-not.hot-or-not"
+    },
+    "ProductLayout": {
+      "type": "component",
+      "repeatable": true,
+      "component": "store.store-layout"
     }
   }
 }
