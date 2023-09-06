@@ -1,0 +1,27 @@
+{
+  "kind": "collectionType",
+  "collectionName": "carousels",
+  "info": {
+    "singularName": "carousel",
+    "pluralName": "carousels",
+    "displayName": "carousel",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "active": {
+      "type": "boolean"
+    },
+    "newsId": {
+      "type": "string"
+    },
+    "newsType": {
+      "type": "component",
+      "repeatable": true,
+      "component": "news-type.news-type"
+    }
+  }
+}
