@@ -2,11 +2,12 @@
   "collectionName": "components_ckeditor_ckeditors",
   "info": {
     "displayName": "ckeditor",
-    "icon": "code"
+    "icon": "code",
+    "description": ""
   },
   "options": {},
   "attributes": {
-    "ckedior": {
+    "ckeditor": {
       "type": "customField",
       "options": {
         "preset": "toolbar"
