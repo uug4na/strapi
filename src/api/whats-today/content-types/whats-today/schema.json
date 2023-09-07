@@ -1,0 +1,25 @@
+{
+  "kind": "collectionType",
+  "collectionName": "whats_todays",
+  "info": {
+    "singularName": "whats-today",
+    "pluralName": "whats-todays",
+    "displayName": "WhatsToday",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "today": {
+      "type": "date"
+    },
+    "title": {
+      "type": "string"
+    },
+    "description": {
+      "type": "text"
+    }
+  }
+}
