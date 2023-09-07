@@ -1,0 +1,24 @@
+{
+  "kind": "collectionType",
+  "collectionName": "unread_newses",
+  "info": {
+    "singularName": "unread-news",
+    "pluralName": "unread-newses",
+    "displayName": "unreadNews"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "text"
+    },
+    "description": {
+      "type": "text"
+    },
+    "unreadUrl": {
+      "type": "text"
+    }
+  }
+}
