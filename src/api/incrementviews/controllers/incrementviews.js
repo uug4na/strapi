@@ -18,14 +18,11 @@ module.exports = {
       if (!post) {
         return ctx.notFound('Post not found');
       }
-      console.log(`postfound: ${JSON.stringify(post)}`)
       if (post.views == null) {
-        console.log(`its null`)
         post.views = 1;
       }
       else
         post.views += 1;
-      console.log(`updateing :${JSON.stringify(post)}`)
       const query = strapi.db.query(collection);
 
       const _result = await query.update({
