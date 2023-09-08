@@ -39,7 +39,7 @@ async function fetchDataFromCollections(collections) {
 module.exports = {
     sortedNews: async () => {
         try {
-            const collections = ['api::news.news', 'api::link.link']
+            const collections = ['api::news.news', 'api::link.link', 'api::unread-news.unread-news']
             const unifiedData = await fetchDataFromCollections(collections);
 
             return unifiedData;
