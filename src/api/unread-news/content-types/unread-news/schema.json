@@ -4,7 +4,8 @@
   "info": {
     "singularName": "unread-news",
     "pluralName": "unread-newses",
-    "displayName": "unreadNews"
+    "displayName": "unreadNews",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -19,6 +20,16 @@
     },
     "unreadUrl": {
       "type": "text"
+    },
+    "thumbnail": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": false
     }
   }
 }
