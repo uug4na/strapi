@@ -44,6 +44,10 @@
       "type": "component",
       "repeatable": false,
       "component": "hot-or-not.hot-or-not"
+    },
+    "isCarousel": {
+      "type": "boolean",
+      "default": false
     }
   }
 }

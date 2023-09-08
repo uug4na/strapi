@@ -27,14 +27,16 @@ async function fetchDataFromCollections(collections) {
         });
         unifiedResult.push(...createdByFields);
     }
+    
+    const filteredData = unifiedResult.filter(item => item.publishedAt !== null);
 
-    unifiedResult.forEach(item => {
+    filteredData.forEach(item => {
         item.publishedAt = new Date(item.publishedAt);
     });
 
-    unifiedResult.sort((a, b) => b.publishedAt - a.publishedAt);
+    filteredData.sort((a, b) => b.publishedAt - a.publishedAt);
 
-    return unifiedResult;
+    return filteredData;
 }
 module.exports = {
     sortedNews: async () => {
