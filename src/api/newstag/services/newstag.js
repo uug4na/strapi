@@ -13,7 +13,7 @@ function extractCreatedByFields(items) {
 async function fetchDataFromCollections(collections, tag) {
     const unifiedResult = [];
     for (const collection of collections) {
-        console.log(`searchingf for ${tag}`)
+        // console.log(`searchingf for ${tag}`)
         const query = strapi.db.query(collection);
         try {
 
@@ -36,8 +36,8 @@ async function fetchDataFromCollections(collections, tag) {
             });
             unifiedResult.push(...createdByFields);
         }
-        catch {
-            console.log(`fck`)
+        catch(err) {
+            console.log(err)
         }
     }
 

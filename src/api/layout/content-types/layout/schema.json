@@ -43,6 +43,9 @@
     },
     "isCarousel": {
       "type": "boolean"
+    },
+    "views": {
+      "type": "integer"
     }
   }
 }

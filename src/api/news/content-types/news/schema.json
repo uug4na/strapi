@@ -48,6 +48,9 @@
     "isCarousel": {
       "type": "boolean",
       "default": false
+    },
+    "views": {
+      "type": "integer"
     }
   }
 }

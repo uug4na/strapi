@@ -46,6 +46,9 @@
       "type": "component",
       "repeatable": false,
       "component": "hot-or-not.hot-or-not"
+    },
+    "views": {
+      "type": "integer"
     }
   }
 }
