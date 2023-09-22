@@ -23,10 +23,9 @@
       "repeatable": true,
       "component": "tags.tags"
     },
-    "Hot": {
-      "type": "component",
-      "repeatable": false,
-      "component": "hot-or-not.hot-or-not"
+    "hot": {
+      "type": "boolean",
+      "default": false
     }
   }
 }

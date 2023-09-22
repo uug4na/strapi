@@ -17,11 +17,6 @@
       "repeatable": true,
       "component": "tags.tags"
     },
-    "Hot": {
-      "type": "component",
-      "repeatable": false,
-      "component": "hot-or-not.hot-or-not"
-    },
     "news": {
       "type": "dynamiczone",
       "components": [
@@ -46,6 +41,10 @@
     },
     "views": {
       "type": "integer"
+    },
+    "hot": {
+      "type": "boolean",
+      "default": false
     }
   }
 }

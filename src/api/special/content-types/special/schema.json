@@ -42,13 +42,12 @@
     "descriptionTitle": {
       "type": "text"
     },
-    "Hot": {
-      "type": "component",
-      "repeatable": false,
-      "component": "hot-or-not.hot-or-not"
-    },
     "views": {
       "type": "integer"
+    },
+    "hot": {
+      "type": "boolean",
+      "default": false
     }
   }
 }
