@@ -35,13 +35,14 @@ async function fetchDataFromCollections(collections, page) {
     });
 
     filteredData.sort((a, b) => b.publishedAt - a.publishedAt);
+    const paginatedData = filteredData.slice(0, page*15+15)
     const groupedData = {};
 
-    filteredData.forEach(item => {
+    paginatedData.forEach(item => {
       const publishedAt = new Date(item.publishedAt); // Convert 'publishedAt' to a Date object
       const dayKey = publishedAt.toDateString(); // Get the day as a string
     
-      if (!groupedData[dayKey]) {
+      if (!groupedData[dayKey]) { 
         groupedData[dayKey] = [];
       }
     
