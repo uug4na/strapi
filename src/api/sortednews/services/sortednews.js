@@ -49,7 +49,7 @@ async function fetchDataFromCollections(collections, page) {
     });
     
     // return filteredData.slice(page*15, page*15+15 );
-    return groupedData.slice(0, page*15+15)
+    return groupedData
 }
 module.exports = {
     sortedNews: async (page) => {
