@@ -14,15 +14,18 @@ module.exports = {
       if (type == "special") collection = "api::special.special"
 
       let post = await strapi.query(collection).findOne({ id });
-
+      let views = 0;
       if (!post) {
         return ctx.notFound('Post not found');
       }
+      console.log(post)
       if (post.views == null) {
-        post.views = 1;
+        views = 1;
       }
       else
-        post.views += 1;
+        views += post.views + 1;
+      console.log(`views now: ${views}`)
+
       const query = strapi.db.query(collection);
 
       const _result = await query.update({
@@ -30,7 +33,7 @@ module.exports = {
           id
         },
         data: {
-          views: post.views
+          views
         }
       });
       ctx.body = _result;

@@ -5,12 +5,13 @@ function extractCreatedByFields(items) {
             : null;
 
         return {
-            ...item, // Keep all existing fields in the item
+            ...item,
             createdBy: createdByFields,
         };
     });
 }
-async function fetchDataFromCollections(collections) {
+
+async function fetchDataFromCollections(collections, page) {
     const unifiedResult = [];
 
     for (const collection of collections) {
@@ -18,7 +19,6 @@ async function fetchDataFromCollections(collections) {
         const foundItem = await query.findMany({
             populate: ['createdBy', 'thumbnail', 'Tags', 'Hot'],
         });
-        // console.log(`query: ${JSON.stringify(foundItem)}`)
         const createdByFields = extractCreatedByFields(foundItem);
         const collectionName = collection.split('::').pop().split('.').pop();
 
@@ -36,14 +36,13 @@ async function fetchDataFromCollections(collections) {
 
     filteredData.sort((a, b) => b.publishedAt - a.publishedAt);
 
-    return filteredData;
+    return filteredData.slice(page*15, page*15+15 );
 }
 module.exports = {
-    sortedNews: async () => {
+    sortedNews: async (page) => {
         try {
             const collections = ['api::news.news', 'api::link.link', 'api::unread-news.unread-news']
-            const unifiedData = await fetchDataFromCollections(collections);
-
+            const unifiedData = await fetchDataFromCollections(collections, page);
             return unifiedData;
 
         } catch (err) {
