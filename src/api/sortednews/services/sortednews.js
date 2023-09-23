@@ -35,8 +35,21 @@ async function fetchDataFromCollections(collections, page) {
     });
 
     filteredData.sort((a, b) => b.publishedAt - a.publishedAt);
+    const groupedData = {};
 
-    return filteredData.slice(page*15, page*15+15 );
+    filteredData.forEach(item => {
+      const publishedAt = new Date(item.publishedAt); // Convert 'publishedAt' to a Date object
+      const dayKey = publishedAt.toDateString(); // Get the day as a string
+    
+      if (!groupedData[dayKey]) {
+        groupedData[dayKey] = [];
+      }
+    
+      groupedData[dayKey].push(item);
+    });
+    
+    // return filteredData.slice(page*15, page*15+15 );
+    return groupedData.slice(0, page*15+15)
 }
 module.exports = {
     sortedNews: async (page) => {
