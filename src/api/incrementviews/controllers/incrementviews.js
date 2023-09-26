@@ -12,6 +12,7 @@ const extractCreatedByFields = (item) => {
         return {
             ...item,
             createdBy: createdByFields,
+            updatedBy: null
         };
 } catch (err) {
     return err;
@@ -49,7 +50,8 @@ module.exports = {
         data: {
           views
         },
-        populate: ['deep'],
+        populate: true,
+        
       });
       const response = {
         success: true,
