@@ -53,6 +53,9 @@
     },
     "readMinute": {
       "type": "integer"
+    },
+    "description": {
+      "type": "text"
     }
   }
 }
