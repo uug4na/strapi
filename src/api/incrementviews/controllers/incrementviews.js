@@ -57,7 +57,10 @@ module.exports = {
       }
       ctx.body = response;
     } catch (err) {
-      ctx.body = err;
+      ctx.body = {
+        success: false,
+        data: {}
+      };
     }
   }
 };
