@@ -4,6 +4,22 @@
  * banner service
  */
 
-const { createCoreService } = require('@strapi/strapi').factories;
 
-module.exports = createCoreService('api::banner.banner');
+module.exports = {
+    extractCreatedByFields: async (items) => {
+        try {
+            return items.map(item => {
+                const createdByFields = item.createdBy
+                    ? { id: item.createdBy.id, firstname: item.createdBy.firstname, lastname: item.createdBy.lastname }
+                    : null;
+        
+                return {
+                    ...item,
+                    createdBy: createdByFields,
+                };
+            });
+        } catch (err) {
+            return err;
+        }
+    },
+};
