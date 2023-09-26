@@ -11,7 +11,6 @@ module.exports = {
        const data = await strapi
         .service("api::newstag.newstag")
         .sortedNews(tag, page);
-      // console.log(`hi ${tag}`)
       ctx.body = data;
     } catch (err) {
       ctx.body = err;
