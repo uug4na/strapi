@@ -1,0 +1,21 @@
+{
+  "kind": "collectionType",
+  "collectionName": "today_topics",
+  "info": {
+    "singularName": "today-topic",
+    "pluralName": "today-topics",
+    "displayName": "todayTopics",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "todayTopics": {
+      "type": "component",
+      "repeatable": true,
+      "component": "tags.tags"
+    }
+  }
+}
