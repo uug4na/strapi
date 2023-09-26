@@ -10,10 +10,9 @@ function extractCreatedByFields(items) {
         };
     });
 }
-async function fetchDataFromCollections(collections, tag) {
+async function fetchDataFromCollections(collections, tag, page) {
     const unifiedResult = [];
     for (const collection of collections) {
-        // console.log(`searchingf for ${tag}`)
         const query = strapi.db.query(collection);
         try {
 
@@ -40,20 +39,32 @@ async function fetchDataFromCollections(collections, tag) {
             console.log(err)
         }
     }
+    const filteredData = unifiedResult.filter(item => item.publishedAt !== null);
 
-    unifiedResult.forEach(item => {
+    filteredData.forEach(item => {
         item.publishedAt = new Date(item.publishedAt);
     });
-
-    unifiedResult.sort((a, b) => b.publishedAt - a.publishedAt);
-
-    return unifiedResult;
+    
+    filteredData.sort((a, b) => b.publishedAt - a.publishedAt);
+    const paginatedData = filteredData.slice(0, page*15+15)
+    const groupedData = {};
+    paginatedData.forEach(item => {
+        const publishedAt = new Date(item.publishedAt); // Convert 'publishedAt' to a Date object
+        const dayKey = publishedAt.toDateString(); // Get the day as a string
+      
+        if (!groupedData[dayKey]) { 
+          groupedData[dayKey] = [];
+        }
+      
+        groupedData[dayKey].push(item);
+    });
+    return groupedData;
 }
 module.exports = {
-    sortedNews: async (tag) => {
+    sortedNews: async (tag, page) => {
         try {
-            const collections = ['api::news.news', 'api::link.link']
-            const unifiedData = await fetchDataFromCollections(collections, tag);
+            const collections = ['api::news.news', 'api::link.link', 'api::unread-news.unread-news', 'api::layout.layout' ]
+            const unifiedData = await fetchDataFromCollections(collections, tag, page);
             return unifiedData;
 
         } catch (err) {

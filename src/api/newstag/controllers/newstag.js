@@ -7,10 +7,10 @@
 module.exports = {
   newsTagFilter: async (ctx, next) => {
     try {
-      const {tag} = ctx.request.query;
+      const {tag, page} = ctx.request.query;
        const data = await strapi
         .service("api::newstag.newstag")
-        .sortedNews(tag);
+        .sortedNews(tag, page);
       // console.log(`hi ${tag}`)
       ctx.body = data;
     } catch (err) {

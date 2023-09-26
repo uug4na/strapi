@@ -55,7 +55,7 @@ async function fetchDataFromCollections(collections, page) {
 module.exports = {
     sortedNews: async (page) => {
         try {
-            const collections = ['api::news.news', 'api::link.link', 'api::unread-news.unread-news']
+            const collections = ['api::news.news', 'api::link.link', 'api::unread-news.unread-news', 'api::layout.layout']
             const unifiedData = await fetchDataFromCollections(collections, page);
             return unifiedData;
 
