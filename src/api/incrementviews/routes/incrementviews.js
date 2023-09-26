@@ -6,7 +6,8 @@ module.exports = {
      handler: 'incrementviews.incrementViews',
      config: {
        policies: [],
-       middlewares: ['plugin::users-permissions.rateLimit'],
+      //  middlewares: ['plugin::users-permissions.rateLimit'],
+      middlewares: []
      },
     },
   ],
