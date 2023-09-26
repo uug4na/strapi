@@ -12,7 +12,7 @@ module.exports = {
       for (const collection of collections) {
         const query = strapi.db.query(collection);
         const foundItem = await query.findMany({
-          populate: ['createdBy', 'thumbnail', 'Tags', 'Hot'],
+          populate: ['createdBy', 'thumbnail', 'Tags', 'Hot', 'news', 'banner'],
           where: {
             isCarousel: true
           }
