@@ -12,8 +12,11 @@ module.exports = {
       if (type == "news") collection = "api::news.news"
       if (type == "layout") collection = "api::layout.layout"
       if (type == "special") collection = "api::special.special"
-
-      let post = await strapi.query(collection).findOne({ id });
+      let post = await strapi.query(collection).findOne({ 
+        where: {
+          id
+        }
+       });
       let views = 0;
       if (!post) {
         return ctx.notFound('Post not found');
@@ -24,7 +27,6 @@ module.exports = {
       }
       else
         views += post.views + 1;
-      console.log(`views now: ${views}`)
 
       const query = strapi.db.query(collection);
 
