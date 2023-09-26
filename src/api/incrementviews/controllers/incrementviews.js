@@ -21,6 +21,7 @@ const extractCreatedByFields = (item) => {
 module.exports = {
   incrementViews: async (ctx, next) => {
     try {
+      console.log(`req arr`)
       const { id, type } = ctx.request.query;
       let collection = ''
       if (type == "news") collection = "api::news.news"
@@ -30,6 +31,7 @@ module.exports = {
         where: {
           id
         },
+        populate: ['createdBy']
        });
       let views = 0;
       if (!post) {
@@ -41,24 +43,22 @@ module.exports = {
       else
         views += post.views + 1;
 
-      const query = strapi.db.query(collection);
+      // const query = strapi.entityService.query(collection);
 
-      const _result = await query.update({
-        where: {
-          id
-        },
+      const _result = await strapi.entityService.update(collection,id,{
         data: {
           views
         },
-        populate: true,
-        
+        populate: 'deep'
       });
+      _result.createdBy = post.createdBy
       const response = {
         success: true,
         data: extractCreatedByFields(_result)
       }
       ctx.body = response;
     } catch (err) {
+      console.log(`error ${err}`)
       ctx.body = {
         success: false,
         data: {}
