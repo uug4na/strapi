@@ -22,7 +22,9 @@
       "components": [
         "ckeditor.ckeditor",
         "product.prices",
-        "product.product"
+        "product.product",
+        "news.youtube",
+        "news.image"
       ]
     },
     "banner": {

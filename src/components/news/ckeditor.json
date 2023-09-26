@@ -1,0 +1,17 @@
+{
+  "collectionName": "components_news_ckeditors",
+  "info": {
+    "displayName": "ckeditor",
+    "icon": "apps"
+  },
+  "options": {},
+  "attributes": {
+    "ckeditor": {
+      "type": "customField",
+      "options": {
+        "preset": "toolbar"
+      },
+      "customField": "plugin::ckeditor5.CKEditor"
+    }
+  }
+}
