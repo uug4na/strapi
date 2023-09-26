@@ -49,7 +49,7 @@ module.exports = {
         data: {
           views
         },
-        populate: ['createdBy', 'thumbnail', 'Tags', 'Hot', 'description', 'news', 'contents'],
+        populate: ['deep'],
       });
       const response = {
         success: true,
