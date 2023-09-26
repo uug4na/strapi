@@ -1,0 +1,13 @@
+{
+  "collectionName": "components_news_youtubes",
+  "info": {
+    "displayName": "Youtube",
+    "icon": "headphone"
+  },
+  "options": {},
+  "attributes": {
+    "url": {
+      "type": "string"
+    }
+  }
+}

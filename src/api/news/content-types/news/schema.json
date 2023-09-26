@@ -27,14 +27,6 @@
         "images"
       ]
     },
-    "ckeditor": {
-      "type": "customField",
-      "options": {
-        "preset": "toolbar"
-      },
-      "customField": "plugin::ckeditor5.CKEditor",
-      "required": true
-    },
     "Tags": {
       "type": "component",
       "repeatable": true,
@@ -50,6 +42,17 @@
     "hot": {
       "type": "boolean",
       "default": false
+    },
+    "contents": {
+      "type": "dynamiczone",
+      "components": [
+        "news.ckeditor",
+        "news.youtube",
+        "news.image"
+      ]
+    },
+    "readMinute": {
+      "type": "integer"
     }
   }
 }
