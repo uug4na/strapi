@@ -51,7 +51,11 @@ module.exports = {
         },
         populate: ['createdBy', 'thumbnail', 'Tags', 'Hot', 'description', 'news', 'contents'],
       });
-      ctx.body = extractCreatedByFields(_result);
+      const response = {
+        success: true,
+        data: extractCreatedByFields(_result)
+      }
+      ctx.body = response;
     } catch (err) {
       ctx.body = err;
     }
