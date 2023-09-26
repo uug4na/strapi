@@ -3,7 +3,20 @@
 /**
  * A set of functions called "actions" for `incrementviews`
  */
+const extractCreatedByFields = (item) => {
+  try {
+        const createdByFields = item.createdBy
+            ? { id: item.createdBy.id, firstname: item.createdBy.firstname, lastname: item.createdBy.lastname }
+            : null;
 
+        return {
+            ...item,
+            createdBy: createdByFields,
+        };
+} catch (err) {
+    return err;
+}
+}
 module.exports = {
   incrementViews: async (ctx, next) => {
     try {
@@ -15,13 +28,12 @@ module.exports = {
       let post = await strapi.query(collection).findOne({ 
         where: {
           id
-        }
+        },
        });
       let views = 0;
       if (!post) {
         return ctx.notFound('Post not found');
       }
-      console.log(post)
       if (post.views == null) {
         views = 1;
       }
@@ -36,11 +48,19 @@ module.exports = {
         },
         data: {
           views
-        }
+        },
+        populate: ['createdBy', 'thumbnail', 'Tags', 'Hot', 'description', 'news', 'contents'],
       });
-      ctx.body = _result;
+      const response = {
+        success: true,
+        data: extractCreatedByFields(_result)
+      }
+      ctx.body = response;
     } catch (err) {
-      ctx.body = err;
+      ctx.body = {
+        success: false,
+        data: {}
+      };
     }
   }
 };
