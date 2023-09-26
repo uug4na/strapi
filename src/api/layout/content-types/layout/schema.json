@@ -39,7 +39,8 @@
       ]
     },
     "isCarousel": {
-      "type": "boolean"
+      "type": "boolean",
+      "default": false
     },
     "views": {
       "type": "integer"

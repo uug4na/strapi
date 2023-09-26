@@ -1,9 +1,13 @@
-'use strict';
-
-/**
- * banner router
- */
-
-const { createCoreRouter } = require('@strapi/strapi').factories;
-
-module.exports = createCoreRouter('api::banner.banner');
+module.exports = {
+  routes: [
+    {
+     method: 'GET',
+     path: '/banner',
+     handler: 'banner.getBanner',
+     config: {
+       policies: [],
+       middlewares: [],
+     },
+    },
+  ],
+};

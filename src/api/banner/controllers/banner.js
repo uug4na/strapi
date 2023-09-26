@@ -1,36 +1,34 @@
 'use strict';
 
 /**
- * banner controller
+ * A set of functions called "actions" for `banner`
  */
 
-const { createCoreController } = require('@strapi/strapi').factories;
-module.exports = createCoreController('api::banner.banner', ({ strapi }) => ({
-  async find(ctx) {
-    // Calling the default core action
-    const { data, meta } = await super.find(ctx);
-    const query = strapi.db.query('api::banner.banner');
-    await Promise.all(
-      data.map(async (item, index) => {
-        const foundItem = await query.findOne({
+module.exports = {
+  getBanner: async (ctx, next) => {
+    try {
+      const unifiedResult = []
+      const collections = ['api::news.news', 'api::unread-news.unread-news', 'api::layout.layout']
+      for (const collection of collections) {
+        const query = strapi.db.query(collection);
+        const foundItem = await query.findMany({
+          populate: ['createdBy', 'thumbnail', 'Tags', 'Hot', 'news', 'banner'],
           where: {
-            id: item.id,
-          },
-          populate: ['createdBy', 'updatedBy'],
+            isCarousel: true
+          }
         });
+        const createdByFields = await strapi.service("api::banner.banner").extractCreatedByFields(foundItem);
+        const collectionName = collection.split('::').pop().split('.').pop();
+        createdByFields.forEach(item => {
+          item.newsType = collectionName;
+        });
+        unifiedResult.push(...createdByFields);
 
-        data[index].attributes.createdBy = {
-          id: foundItem.createdBy.id,
-          firstname: foundItem.createdBy.firstname,
-          lastname: foundItem.createdBy.lastname,
-        };
-        data[index].attributes.updatedBy = {
-          id: foundItem.updatedBy.id,
-          firstname: foundItem.updatedBy.firstname,
-          lastname: foundItem.updatedBy.lastname,
-        };
-      })
-    );
-    return { data, meta };
-  },
-}));
+      }
+      ctx.body = unifiedResult;
+
+    } catch (err) {
+      ctx.body = err;
+    }
+  }
+};
