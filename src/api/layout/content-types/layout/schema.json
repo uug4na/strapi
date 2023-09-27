@@ -55,6 +55,10 @@
     "title": {
       "type": "string",
       "required": true
+    },
+    "readMinute": {
+      "type": "integer",
+      "required": true
     }
   }
 }
