@@ -24,7 +24,8 @@
         "product.prices",
         "product.product",
         "news.youtube",
-        "news.image"
+        "news.image",
+        "news.image-description"
       ]
     },
     "thumbnail": {

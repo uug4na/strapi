@@ -1,0 +1,13 @@
+{
+  "collectionName": "components_news_image_descriptions",
+  "info": {
+    "displayName": "imageDescription",
+    "icon": "layer"
+  },
+  "options": {},
+  "attributes": {
+    "imageDescription": {
+      "type": "string"
+    }
+  }
+}
