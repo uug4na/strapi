@@ -48,7 +48,8 @@
       "components": [
         "news.ckeditor",
         "news.youtube",
-        "news.image"
+        "news.image",
+        "news.image-description"
       ]
     },
     "readMinute": {
