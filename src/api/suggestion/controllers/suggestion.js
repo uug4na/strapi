@@ -45,7 +45,7 @@ module.exports = {
         unifiedResult.push(...createdByFields);
       }
       shuffleArray(unifiedResult);
-      ctx.body = unifiedResult.slice(0, 4);
+      ctx.body = unifiedResult.slice(0, 5);
     } catch (err) {
       ctx.body = err;
     }
