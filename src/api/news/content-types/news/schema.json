@@ -57,6 +57,9 @@
     },
     "description": {
       "type": "text"
+    },
+    "contibuter": {
+      "type": "string"
     }
   }
 }

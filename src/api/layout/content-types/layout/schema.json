@@ -60,6 +60,9 @@
     "readMinute": {
       "type": "integer",
       "required": true
+    },
+    "contibuter": {
+      "type": "string"
     }
   }
 }

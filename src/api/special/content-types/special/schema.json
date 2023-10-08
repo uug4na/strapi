@@ -48,6 +48,9 @@
     "hot": {
       "type": "boolean",
       "default": false
+    },
+    "contibuter": {
+      "type": "string"
     }
   }
 }
