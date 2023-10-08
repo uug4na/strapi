@@ -1,0 +1,21 @@
+{
+  "kind": "collectionType",
+  "collectionName": "current_events",
+  "info": {
+    "singularName": "current-event",
+    "pluralName": "current-events",
+    "displayName": "Current Event"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "event": {
+      "type": "string"
+    },
+    "path": {
+      "type": "string"
+    }
+  }
+}
