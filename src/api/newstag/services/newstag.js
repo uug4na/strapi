@@ -20,9 +20,14 @@ async function fetchDataFromCollections(collections, tag, page) {
                 populate: ['createdBy', 'thumbnail', 'Tags'],
                 where: {
                     Tags: {
-                        Tags: {
-                            $eqi: tag
-                        }
+                        $or: [
+                            { 'companies': { $eqi: tag } },
+                            { 'software': { $eqi: tag } },
+                            { 'hardware': { $eqi: tag } },
+                            { 'innovation': { $eqi: tag } },
+                            { 'car': { $eqi: tag } },
+                            { 'entertainment': { $eqi: tag } },
+                        ]
                     }
                 }
             });
@@ -35,7 +40,7 @@ async function fetchDataFromCollections(collections, tag, page) {
             });
             unifiedResult.push(...createdByFields);
         }
-        catch(err) {
+        catch (err) {
             console.log(err)
         }
     }
@@ -44,18 +49,18 @@ async function fetchDataFromCollections(collections, tag, page) {
     filteredData.forEach(item => {
         item.publishedAt = new Date(item.publishedAt);
     });
-    
+
     filteredData.sort((a, b) => b.publishedAt - a.publishedAt);
-    const paginatedData = filteredData.slice(0, page*15+15)
+    const paginatedData = filteredData.slice(0, page * 15 + 15)
     const groupedData = {};
     paginatedData.forEach(item => {
         const publishedAt = new Date(item.publishedAt); // Convert 'publishedAt' to a Date object
         const dayKey = publishedAt.toDateString(); // Get the day as a string
-      
-        if (!groupedData[dayKey]) { 
-          groupedData[dayKey] = [];
+
+        if (!groupedData[dayKey]) {
+            groupedData[dayKey] = [];
         }
-      
+
         groupedData[dayKey].push(item);
     });
     return groupedData;
@@ -63,7 +68,7 @@ async function fetchDataFromCollections(collections, tag, page) {
 module.exports = {
     sortedNews: async (tag, page) => {
         try {
-            const collections = ['api::news.news', 'api::link.link', 'api::unread-news.unread-news', 'api::layout.layout' ]
+            const collections = ['api::news.news', 'api::link.link', 'api::unread-news.unread-news', 'api::layout.layout']
             const unifiedData = await fetchDataFromCollections(collections, tag, page);
             return unifiedData;
 
