@@ -2,17 +2,106 @@
   "collectionName": "components_tags_tags",
   "info": {
     "displayName": "Tags",
-    "icon": "hashtag"
+    "icon": "hashtag",
+    "description": ""
   },
   "options": {},
   "attributes": {
-    "Tags": {
+    "companies": {
       "type": "enumeration",
       "enum": [
-        "apple",
-        "microsoft",
-        "tesla",
-        "engineer"
+        "Apple",
+        "Microsoft",
+        "Google",
+        "Amazon",
+        "Tesla",
+        "Meta",
+        "NVIDIA",
+        "Samsung",
+        "Tencent",
+        "TSMC",
+        "Intel",
+        "Adobe",
+        "SpaceX",
+        "Toyota",
+        "Mercedes-Benz",
+        "Binance",
+        "Netflix",
+        "Spotify",
+        "Sony",
+        "Logitech"
+      ]
+    },
+    "software": {
+      "type": "enumeration",
+      "enum": [
+        "iOS",
+        "macOS",
+        "Windows",
+        "Android",
+        "watchOS",
+        "iPadOS"
+      ]
+    },
+    "hardware": {
+      "type": "enumeration",
+      "enum": [
+        "Laptop",
+        "Smartphone",
+        "TV",
+        "Office",
+        "Home",
+        "School"
+      ]
+    },
+    "innovation": {
+      "type": "enumeration",
+      "enum": [
+        "Business",
+        "Startup",
+        "IoT",
+        "Internet5G",
+        "VR",
+        "AR",
+        "Cybersecurity",
+        "Blockchain",
+        "AI",
+        "ML",
+        "Cloud",
+        "Robotics",
+        "Space"
+      ]
+    },
+    "car": {
+      "type": "enumeration",
+      "enum": [
+        "Toyota",
+        "Volkswagen",
+        "Mercedes-Benz",
+        "Ford",
+        "General Motors",
+        "Honda",
+        "Hyundai",
+        "Nissan",
+        "KIA",
+        "Tesla",
+        "BMW",
+        "Suzuki",
+        "Mazda",
+        "Renault",
+        "Subaru",
+        "Geely",
+        "Porsche",
+        "Jeep",
+        "Lamborghini",
+        "Formula 1"
+      ]
+    },
+    "entertainment": {
+      "type": "enumeration",
+      "enum": [
+        "Esports",
+        "Streaming"
       ]
     }
   }
