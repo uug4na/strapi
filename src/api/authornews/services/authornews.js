@@ -13,7 +13,7 @@ function extractCreatedByFields(items) {
 
 async function fetchDataFromCollections(collections, page, author) {
     const unifiedResult = [];
-
+    let count = 0
     for (const collection of collections) {
         const query = strapi.db.query(collection);
         const foundItem = await query.findMany({
@@ -24,6 +24,7 @@ async function fetchDataFromCollections(collections, page, author) {
                 }
             }
         });
+        count+=foundItem.length
         const createdByFields = extractCreatedByFields(foundItem);
         const collectionName = collection.split('::').pop().split('.').pop();
 
@@ -55,7 +56,12 @@ async function fetchDataFromCollections(collections, page, author) {
     });
     
     // return filteredData.slice(page*15, page*15+15 );
-    return groupedData
+    // return groupedData
+    return {
+        success: true,
+        data: groupedData,
+        newsCount: count
+    }
 }
 module.exports = {
     authorNews: async (page, author, type) => {
