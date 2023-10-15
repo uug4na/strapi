@@ -4,7 +4,8 @@
   "info": {
     "singularName": "ad",
     "pluralName": "ads",
-    "displayName": "ads"
+    "displayName": "ads",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -12,14 +13,18 @@
   "pluginOptions": {},
   "attributes": {
     "thumbnail": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
       "allowedTypes": [
         "images",
         "files",
         "videos",
         "audios"
-      ],
-      "type": "media",
-      "multiple": false
+      ]
+    },
+    "link": {
+      "type": "string"
     }
   }
 }
