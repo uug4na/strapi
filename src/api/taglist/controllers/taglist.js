@@ -85,6 +85,7 @@ function findItemsByKeyword(keyword) {
       "Streaming"
     ]
   }
+  
   const category = Object.keys(data).find(key => data[key].includes(keyword));
   
   if (!category) {
