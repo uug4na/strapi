@@ -35,6 +35,9 @@
     "isCarousel": {
       "type": "boolean",
       "default": false
+    },
+    "Tag": {
+      "type": "string"
     }
   }
 }
