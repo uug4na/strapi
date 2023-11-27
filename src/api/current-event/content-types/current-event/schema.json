@@ -4,7 +4,8 @@
   "info": {
     "singularName": "current-event",
     "pluralName": "current-events",
-    "displayName": "Current Event"
+    "displayName": "Current Event",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -16,6 +17,12 @@
     },
     "path": {
       "type": "string"
+    },
+    "tags": {
+      "type": "dynamiczone",
+      "components": [
+        "tags.tags"
+      ]
     }
   }
 }
