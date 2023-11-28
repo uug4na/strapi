@@ -12,35 +12,45 @@ function extractCreatedByFields(items) {
 }
 
 async function fetchDataFromCollections(collections, page) {
-    const unifiedResult = [];
-    console.log(`it worked`)
+    try {
 
-    for (const collection of collections) {
-        const query = strapi.db.query(collection);
-        const foundItem = await query.findMany({
-            populate: ['createdBy', 'thumbnail', 'Tags', 'Hot', 'description'],
-        });
-        const createdByFields = extractCreatedByFields(foundItem);
-        const collectionName = collection.split('::').pop().split('.').pop();
 
-        createdByFields.forEach(item => {
-            item.newsType = collectionName;
+        const unifiedResult = [];
+        console.log(`it worked`)
+
+        for (const collection of collections) {
+            const query = strapi.db.query(collection);
+            const foundItem = await query.findMany({
+                populate: ['createdBy', 'thumbnail', 'Tags', 'Hot', 'description'],
+            });
+            const createdByFields = extractCreatedByFields(foundItem);
+            const collectionName = collection.split('::').pop().split('.').pop();
+
+            createdByFields.forEach(item => {
+                item.newsType = collectionName;
+            });
+            unifiedResult.push(...createdByFields);
+        }
+
+        const filteredData = unifiedResult.filter(item => item.publishedAt !== null);
+
+        filteredData.forEach(item => {
+            item.publishedAt = new Date(item.publishedAt);
         });
-        unifiedResult.push(...createdByFields);
+
+        filteredData.sort((a, b) => b.publishedAt - a.publishedAt);
+        const hasMore = filteredData.length > page * 15 + 15;
+        return {
+            success: true,
+            data: filteredData.slice(page * 15, page * 15 + 15),
+            hasMore
+        }
     }
-
-    const filteredData = unifiedResult.filter(item => item.publishedAt !== null);
-
-    filteredData.forEach(item => {
-        item.publishedAt = new Date(item.publishedAt);
-    });
-
-    filteredData.sort((a, b) => b.publishedAt - a.publishedAt);
-    const hasMore = filteredData.length > page * 15 + 15;
-    return {
-        success: true,
-        data: filteredData.slice(page * 15, page * 15 + 15),
-        hasMore
+    catch (err) {
+        return {
+            success: false,
+            data: []
+        }
     }
 }
 async function fetchDataFromCollectionsTagsFilter(collections, tag, page) {
@@ -93,7 +103,7 @@ async function fetchDataFromCollectionsTagsFilter(collections, tag, page) {
     }
 }
 module.exports = {
-    NewsFeedService: async(page) => {
+    NewsFeedService: async (page) => {
         try {
             console.log(`it worked without filter`)
 
@@ -104,7 +114,7 @@ module.exports = {
             return err;
         }
     },
-    NewsFeedTagService: async(page, tag) => {
+    NewsFeedTagService: async (page, tag) => {
         try {
             console.log(`it worked with filter`)
             const collections = ['api::news.news', 'api::link.link', 'api::unread-news.unread-news', 'api::layout.layout']

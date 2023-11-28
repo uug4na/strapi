@@ -7,10 +7,11 @@
 module.exports = {
   eventNews: async (ctx, next) => {
     try {
-      const {event, page} = ctx.request.query;
-       const data = await strapi
+      let { event, page } = ctx.request.query;
+      if( page === undefined ) page = 0;
+      const data = await strapi
         .service("api::eventnews.eventnews")
-        .sortedNews(event, page);
+        .getEventNews(event, page);
       ctx.body = data;
     } catch (err) {
       ctx.body = err;
