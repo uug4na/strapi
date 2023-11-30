@@ -10,86 +10,98 @@ function extractCreatedByFields(items) {
         };
     });
 }
-function extractValues(data) {
-    const allValues = data.flatMap(obj =>
-        Object.entries(obj)
-            .filter(([key, value]) => key !== '__component' && key !== 'id' && value !== null && value !== undefined)
-            .map(([key, value]) => String(value))
-    );
+function extractTags(eventTags) {
+    const result = []
 
-    // Filter out duplicates
-    const uniqueValues = allValues.filter((value, index, self) => self.indexOf(value) === index);
+    eventTags.forEach(tag => {
+        Object.entries(tag).forEach(([key, value]) => {
+            if (value !== null && value !== 'tags.tags' && typeof value !== 'number') {
+                result.push(value);
+            }
+        });
+    });
 
-    return uniqueValues;
+    return result;
 }
 const getTagsFromEvent = async (event) => {
-    const query = strapi.db.query('api::event-page.event-page');
-    const eventData = await query.findOne({
-        where: {
-            eventName: event
-        },
-        populate: ['eventTags', 'eventName']
-    });
-    return extractValues(eventData.eventTags)
+    try {
+
+        const query = strapi.db.query('api::event-page.event-page');
+
+        const eventData = await query.findOne({
+            where: {
+                eventName: event
+            },
+            populate: ['eventTags']
+        });
+        return extractTags(eventData.eventTags)
+    }
+    catch (err) {
+        console.log(err)
+    }
 }
 
 async function fetchDataFromCollections(collections, event, page) {
-    const unifiedResult = [];
-    const tag = await getTagsFromEvent(event)
-    for (const collection of collections) {
-        const query = strapi.db.query(collection);
-        try {
-            const foundItem = await query.findMany({
-                populate: ['createdBy', 'thumbnail', 'Tags'],
-                where: {
-                    Tags: {
-                        $or: [
-                            { 'companies': { $in: tag } },
-                            { 'software': { $in: tag } },
-                            { 'hardware': { $in: tag } },
-                            { 'innovation': { $in: tag } },
-                            { 'car': { $in: tag } },
-                            { 'entertainment': { $in: tag } },
-                        ]
+    try {
+
+        const unifiedResult = [];
+        const tag = await getTagsFromEvent(event)
+        for (const collection of collections) {
+            const query = strapi.db.query(collection);
+            try {
+                const foundItem = await query.findMany({
+                    populate: ['createdBy', 'thumbnail', 'Tags'],
+                    where: {
+                        Tags: {
+                            $or: [
+                                { 'companies': { $in: tag } },
+                                { 'software': { $in: tag } },
+                                { 'hardware': { $in: tag } },
+                                { 'innovation': { $in: tag } },
+                                { 'car': { $in: tag } },
+                                { 'entertainment': { $in: tag } },
+                            ]
+                        }
                     }
-                }
-            });
+                });
+                const createdByFields = extractCreatedByFields(foundItem);
+                const collectionName = collection.split('::').pop().split('.').pop();
 
-            const createdByFields = extractCreatedByFields(foundItem);
-            const collectionName = collection.split('::').pop().split('.').pop();
-
-            createdByFields.forEach(item => {
-                item.newsType = collectionName;
-            });
-            unifiedResult.push(...createdByFields);
+                createdByFields.forEach(item => {
+                    item.newsType = collectionName;
+                });
+                unifiedResult.push(...createdByFields);
+            }
+            catch (err) {
+                console.log(err)
+            }
         }
-        catch (err) {
-            console.log(err)
+        const filteredData = unifiedResult.filter(item => item.publishedAt !== null);
+        
+        filteredData.forEach(item => {
+            item.publishedAt = new Date(item.publishedAt);
+        });
+        
+        filteredData.sort((a, b) => b.publishedAt - a.publishedAt);
+        const data = filteredData.slice(page * 15, page * 15 + 15)
+        const hasMore = filteredData.length > page * 15 + 15;
+
+        return {
+            success: true,
+            data,
+            hasMore
         }
     }
-    const filteredData = unifiedResult.filter(item => item.publishedAt !== null);
-
-    filteredData.forEach(item => {
-        item.publishedAt = new Date(item.publishedAt);
-    });
-
-    filteredData.sort((a, b) => b.publishedAt - a.publishedAt);
-    const paginatedData = filteredData.slice(0, page * 15 + 15)
-    const groupedData = {};
-    paginatedData.forEach(item => {
-        const publishedAt = new Date(item.publishedAt); // Convert 'publishedAt' to a Date object
-        const dayKey = publishedAt.toDateString(); // Get the day as a string
-
-        if (!groupedData[dayKey]) {
-            groupedData[dayKey] = [];
+    catch (err) {
+        console.log(`err: ${err}`)
+        return {
+            success: false,
+            data: []
         }
-
-        groupedData[dayKey].push(item);
-    });
-    return groupedData;
+    }
 }
 module.exports = {
-    sortedNews: async (event, page) => {
+    getEventNews: async (event, page) => {
         try {
             const collections = ['api::news.news', 'api::link.link', 'api::unread-news.unread-news', 'api::layout.layout']
             const unifiedData = await fetchDataFromCollections(collections, event, page);
