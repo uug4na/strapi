@@ -23,6 +23,12 @@
       "components": [
         "tags.tags"
       ]
+    },
+    "eventDescription": {
+      "type": "text"
+    },
+    "DescriptionTitle": {
+      "type": "string"
     }
   }
 }
