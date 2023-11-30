@@ -30,7 +30,7 @@
     "DescriptionTitle": {
       "type": "string"
     },
-    "eventPicture": {
+    "thumbnailOfEvent": {
       "type": "media",
       "multiple": false,
       "required": false,
@@ -40,16 +40,6 @@
         "videos",
         "audios"
       ]
-    },
-    "thumbnailOfEvent": {
-      "allowedTypes": [
-        "images",
-        "files",
-        "videos",
-        "audios"
-      ],
-      "type": "media",
-      "multiple": false
     }
   }
 }
