@@ -30,7 +30,8 @@
     "Tags": {
       "type": "component",
       "repeatable": true,
-      "component": "tags.tags"
+      "component": "tags.tags",
+      "required": true
     },
     "isCarousel": {
       "type": "boolean",
@@ -56,10 +57,12 @@
       "type": "integer"
     },
     "description": {
-      "type": "text"
+      "type": "text",
+      "required": true
     },
     "contibuter": {
-      "type": "string"
+      "type": "string",
+      "required": true
     }
   }
 }

@@ -13,12 +13,13 @@
   "pluginOptions": {},
   "attributes": {
     "title": {
-      "type": "text"
+      "type": "text",
+      "required": true
     },
     "thumbnail": {
       "type": "media",
       "multiple": false,
-      "required": false,
+      "required": true,
       "allowedTypes": [
         "images",
         "files",
@@ -27,12 +28,14 @@
       ]
     },
     "description": {
-      "type": "text"
+      "type": "text",
+      "required": true
     },
     "Tags": {
       "type": "component",
       "repeatable": false,
-      "component": "tags.tags"
+      "component": "tags.tags",
+      "required": true
     },
     "PageColor": {
       "type": "customField",
@@ -40,17 +43,20 @@
       "customField": "plugin::color-picker.color"
     },
     "descriptionTitle": {
-      "type": "text"
+      "type": "text",
+      "required": true
     },
     "views": {
       "type": "integer"
     },
     "hot": {
       "type": "boolean",
-      "default": false
+      "default": false,
+      "required": true
     },
     "contibuter": {
-      "type": "string"
+      "type": "string",
+      "required": true
     }
   }
 }

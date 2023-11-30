@@ -15,7 +15,8 @@
     "Tags": {
       "type": "component",
       "repeatable": true,
-      "component": "tags.tags"
+      "component": "tags.tags",
+      "required": true
     },
     "news": {
       "type": "dynamiczone",
@@ -26,12 +27,13 @@
         "news.youtube",
         "news.image",
         "news.image-description"
-      ]
+      ],
+      "required": true
     },
     "thumbnail": {
       "type": "media",
       "multiple": false,
-      "required": false,
+      "required": true,
       "allowedTypes": [
         "images",
         "files",
@@ -41,7 +43,8 @@
     },
     "isCarousel": {
       "type": "boolean",
-      "default": false
+      "default": false,
+      "required": true
     },
     "views": {
       "type": "integer"
@@ -51,7 +54,8 @@
       "default": false
     },
     "description": {
-      "type": "text"
+      "type": "text",
+      "required": true
     },
     "title": {
       "type": "string",
@@ -62,7 +66,8 @@
       "required": true
     },
     "contibuter": {
-      "type": "string"
+      "type": "string",
+      "required": true
     }
   }
 }
