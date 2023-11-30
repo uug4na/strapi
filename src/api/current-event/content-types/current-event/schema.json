@@ -31,6 +31,17 @@
       "type": "string"
     },
     "eventPicture": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "thumbnailOfEvent": {
       "allowedTypes": [
         "images",
         "files",
