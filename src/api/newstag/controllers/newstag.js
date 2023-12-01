@@ -7,8 +7,9 @@
 module.exports = {
   newsTagFilter: async (ctx, next) => {
     try {
-      const {tag, page} = ctx.request.query;
-       const data = await strapi
+      let { tag, page } = ctx.request.query;
+      if (page === undefined) page = 0
+      const data = await strapi
         .service("api::newstag.newstag")
         .sortedNews(tag, page);
       ctx.body = data;
