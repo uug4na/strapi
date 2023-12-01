@@ -81,12 +81,23 @@ async function fetchDataFromCollections(collections, event, page) {
         });
 
         filteredData.sort((a, b) => b.publishedAt - a.publishedAt);
-        const data = filteredData.slice(page * 15, page * 15 + 15)
+        // const data = filteredData.slice(page * 15, page * 15 + 15)
         const hasMore = filteredData.length > page * 15 + 15;
-
+        const groupedData = {};
+        const paginatedData = filteredData.slice(0, page*15+15);
+        paginatedData.forEach(item => {
+          const publishedAt = new Date(item.publishedAt); // Convert 'publishedAt' to a Date object
+          const dayKey = publishedAt.toDateString(); // Get the day as a string
+        
+          if (!groupedData[dayKey]) { 
+            groupedData[dayKey] = [];
+          }
+        
+          groupedData[dayKey].push(item);
+        });
         return {
             success: true,
-            data,
+            data: groupedData,
             hasMore
         }
     }
