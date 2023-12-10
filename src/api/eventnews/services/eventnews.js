@@ -26,15 +26,13 @@ function extractTags(eventTags) {
 const getTagsFromEvent = async (event) => {
     try {
 
-        const query = strapi.db.query('api::event-page.event-page');
+        const query = strapi.db.query('api::current-event.current-event');
 
-        const eventData = await query.findOne({
-            where: {
-                eventName: event
-            },
-            populate: ['eventTags']
+        const eventData = await query.findMany({
+            populate: ['tags']
         });
-        return extractTags(eventData.eventTags)
+        console.log(`eventData: ${JSON.stringify(eventData)}`)
+        return extractTags(eventData[0].tags)
     }
     catch (err) {
         console.log(err)
@@ -77,18 +75,28 @@ async function fetchDataFromCollections(collections, event, page) {
             }
         }
         const filteredData = unifiedResult.filter(item => item.publishedAt !== null);
-        
+
         filteredData.forEach(item => {
             item.publishedAt = new Date(item.publishedAt);
         });
-        
-        filteredData.sort((a, b) => b.publishedAt - a.publishedAt);
-        const data = filteredData.slice(page * 15, page * 15 + 15)
-        const hasMore = filteredData.length > page * 15 + 15;
 
+        filteredData.sort((a, b) => b.publishedAt - a.publishedAt);
+        // const data = filteredData.slice(page * 15, page * 15 + 15)
+        const hasMore = filteredData.length > page * 15 + 15;
+        // const paginatedData = filteredData.slice(0, page*15+15);
+        // paginatedData.forEach(item => {
+        //   const publishedAt = new Date(item.publishedAt); // Convert 'publishedAt' to a Date object
+        //   const dayKey = publishedAt.toDateString(); // Get the day as a string
+        
+        //   if (!groupedData[dayKey]) { 
+        //     groupedData[dayKey] = [];
+        //   }
+        
+        //   groupedData[dayKey].push(item);
+        // });
         return {
             success: true,
-            data,
+            data: filteredData.slice(page * 15, page * 15 + 15),
             hasMore
         }
     }

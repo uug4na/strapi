@@ -11,59 +11,62 @@ function extractCreatedByFields(items) {
     });
 }
 async function fetchDataFromCollections(collections, tag, page) {
-    const unifiedResult = [];
-    for (const collection of collections) {
-        const query = strapi.db.query(collection);
-        try {
+    try {
 
-            const foundItem = await query.findMany({
-                populate: ['createdBy', 'thumbnail', 'Tags'],
-                where: {
-                    Tags: {
-                        $or: [
-                            { 'companies': { $eqi: tag } },
-                            { 'software': { $eqi: tag } },
-                            { 'hardware': { $eqi: tag } },
-                            { 'innovation': { $eqi: tag } },
-                            { 'car': { $eqi: tag } },
-                            { 'entertainment': { $eqi: tag } },
-                        ]
+        const unifiedResult = [];
+        for (const collection of collections) {
+            const query = strapi.db.query(collection);
+            try {
+
+                const foundItem = await query.findMany({
+                    populate: ['createdBy', 'thumbnail', 'Tags'],
+                    where: {
+                        Tags: {
+                            $or: [
+                                { 'companies': { $eqi: tag } },
+                                { 'software': { $eqi: tag } },
+                                { 'hardware': { $eqi: tag } },
+                                { 'innovation': { $eqi: tag } },
+                                { 'car': { $eqi: tag } },
+                                { 'entertainment': { $eqi: tag } },
+                            ]
+                        }
                     }
-                }
-            });
+                });
 
-            const createdByFields = extractCreatedByFields(foundItem);
-            const collectionName = collection.split('::').pop().split('.').pop();
+                const createdByFields = extractCreatedByFields(foundItem);
+                const collectionName = collection.split('::').pop().split('.').pop();
 
-            createdByFields.forEach(item => {
-                item.newsType = collectionName;
-            });
-            unifiedResult.push(...createdByFields);
+                createdByFields.forEach(item => {
+                    item.newsType = collectionName;
+                });
+                unifiedResult.push(...createdByFields);
+            }
+            catch (err) {
+                console.log(err)
+            }
         }
-        catch (err) {
-            console.log(err)
+        const filteredData = unifiedResult.filter(item => item.publishedAt !== null);
+
+        filteredData.forEach(item => {
+            item.publishedAt = new Date(item.publishedAt);
+        });
+
+        filteredData.sort((a, b) => b.publishedAt - a.publishedAt);
+        const hasMore = filteredData.length > page * 15 + 15;
+
+        return {
+            success: true,
+            data: filteredData.slice(page * 15, page * 15 + 15),
+            hasMore
+        };
+    }
+    catch (err) {
+        return {
+            succes: false,
+            data: [],
         }
     }
-    const filteredData = unifiedResult.filter(item => item.publishedAt !== null);
-
-    filteredData.forEach(item => {
-        item.publishedAt = new Date(item.publishedAt);
-    });
-
-    filteredData.sort((a, b) => b.publishedAt - a.publishedAt);
-    const paginatedData = filteredData.slice(0, page * 15 + 15)
-    const groupedData = {};
-    paginatedData.forEach(item => {
-        const publishedAt = new Date(item.publishedAt); // Convert 'publishedAt' to a Date object
-        const dayKey = publishedAt.toDateString(); // Get the day as a string
-
-        if (!groupedData[dayKey]) {
-            groupedData[dayKey] = [];
-        }
-
-        groupedData[dayKey].push(item);
-    });
-    return groupedData;
 }
 module.exports = {
     sortedNews: async (tag, page) => {
