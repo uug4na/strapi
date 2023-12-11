@@ -4,7 +4,7 @@
   "info": {
     "singularName": "unread-news",
     "pluralName": "unread-newses",
-    "displayName": "unreadNews",
+    "displayName": "News From Unread",
     "description": ""
   },
   "options": {
