@@ -58,6 +58,7 @@ async function fetchDataFromCollections(collections, event, page) {
                                 { 'innovation': { $in: tag } },
                                 { 'car': { $in: tag } },
                                 { 'entertainment': { $in: tag } },
+                                { 'events': { $in: tag } }
                             ]
                         }
                     }
