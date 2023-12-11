@@ -103,6 +103,12 @@
         "Esports",
         "Streaming"
       ]
+    },
+    "events": {
+      "type": "enumeration",
+      "enum": [
+        "unplug"
+      ]
     }
   }
 }
