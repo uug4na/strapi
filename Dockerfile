@@ -1,4 +1,4 @@
-FROM node:18-alpine3.18
+FROM --platform=linux/amd64 node:18-alpine3.18
 
 # Add the required repositories and install vips-dev
 RUN apk update \
@@ -31,7 +31,7 @@ USER node
 RUN yarn build
 
 # Expose ports
-EXPOSE 1337
+EXPOSE 80
 
 
 # Build the Strapi project

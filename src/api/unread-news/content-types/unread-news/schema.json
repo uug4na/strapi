@@ -38,6 +38,11 @@
     },
     "Tag": {
       "type": "string"
+    },
+    "Tags": {
+      "type": "component",
+      "repeatable": true,
+      "component": "tags.tags"
     }
   }
 }
