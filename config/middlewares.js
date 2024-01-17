@@ -12,14 +12,14 @@ module.exports = [
             'data:',
             'blob:',
             'dl.airtable.com',
-            'https://techworm-strapi.s3.ap-southeast-1.amazonaws.com', // change here
+            'https://strapi-techworm.s3.ap-southeast-1.amazonaws.com', // change here
           ],
           'media-src': [
             "'self'",
             'data:',
             'blob:',
             'dl.airtable.com',
-            'https://techworm-strapi.s3.ap-southeast-1.amazonaws.com', // change here
+            'https://strapi-techworm.s3.ap-southeast-1.amazonaws.com', // change here
           ],
           upgradeInsecureRequests: null,
         },
